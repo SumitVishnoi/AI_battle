@@ -1,8 +1,14 @@
 import express from "express"
 import runGraph from "./ai/graph.ai.js"
+import cors from "cors"
 
 const app = express()
 app.use(express.json())
+app.use(cors({
+    origin: "http://localhost:5173",
+    methods: ["Get", "POST"],
+    credentials: true
+}))
 
 app.get("/", async (req, res)=> {
     const result = await runGraph("Write an code for Factorial function in js")
